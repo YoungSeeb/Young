@@ -55,6 +55,7 @@ b）为整个web应用配置context域：
     out.println(application.getInitParameter("data"));
 ```
 c）读取资源文件
+
    　　使用`ServletContext`接口可以直接访问web应用中的静态内容文档结构.包括HTML,GIF和JPEG文件。如以下方法:
             　　`.getResource()`
           　　`  .getResourceAsStream()`
@@ -135,6 +136,7 @@ c）读取资源文件
 3. <font color = "blue">怎么使用这些作用域（怎么用）
 
 	a) 获得客户机信息的方法
+	
 　　   ` getRequestURL`方法返回客户端发出请求时的完整URL。
 　　    `getRequestURI`方法返回请求行中的资源名部分。
 　　    `getQueryString` 方法返回请求行中的参数部分。
@@ -146,11 +148,13 @@ c）读取资源文件
 　　    `getMethod`得到客户机请求方式
 　　    
  b) 获得客户机请求头
+ 
 　　  `  getHeader(string name)`方法
 　　   ` getHeaders(String name)`方法
 　　    `getHeaderNames`方法
 　　    
 c) 获得客户机请求参数(客户端提交的数据)
+
 　　    `getParameter(name)`方法
 　　    `getParameterValues（String name）`方法
 　　    `getParameterNames`方法
