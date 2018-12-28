@@ -57,8 +57,11 @@ b）为整个web应用配置context域：
 c）读取资源文件
 
    　　使用`ServletContext`接口可以直接访问web应用中的静态内容文档结构.包括HTML,GIF和JPEG文件。如以下方法:
+     
             　　`.getResource()`
+	      
           　　`  .getResourceAsStream()`
+	    
    　　这两个方法的参数都是以`"/"`开头的字符串,表示资源相对于`context`根的相对路径.文档结构可以存在于服务器文件系统,或是war包中,或是在远程服务器上,抑或其他位置。不可以用来获得动态资源,比如`,getResource("/index.jsp")`,这个方法将返回该jsp文件的源码,而不是动态页面.可以用 `"Dispatching Requests"` 获得动态内容.列出web应用中可被访问的资源,可以使用`getResourcePaths(String path)`方法。
 
                                                    
@@ -81,7 +84,7 @@ c）读取资源文件
 	（会话范围）在第一次调用`request.getSession()`方法时，服务器会检查是否已经有对应的`session`。如果没有，就在内存中创建一个`session`并返回。当一短时间内（默认30分钟）`session`没有被使用，则服务器会销毁该`session`。若服务器非正常关闭，未到期的`session`也会跟着销毁。若调用`session`提供的`invalidate()`方法，可以立即销毁`session`。
 3. <font color = "blue">怎么使用这些作用域（怎么用）
 ```java
-	  a) jsp中操作session
+     a) jsp中操作session
 　　　　(String)request.getSession().getAttribute("username"); // 获取
 　　　　request.getSession().setAttribute("username", "xxx");  // 设置
 
@@ -138,27 +141,40 @@ c）读取资源文件
 	a) 获得客户机信息的方法
 	
 　　   ` getRequestURL`方法返回客户端发出请求时的完整URL。
+     
 　　    `getRequestURI`方法返回请求行中的资源名部分。
+      
 　　    `getQueryString` 方法返回请求行中的参数部分。
+      
 　　    `getRemoteAddr`方法返回发出请求的客户机的IP地址
+      
 　　    `getRemoteHost`方法返回发出请求的客户机的完整主机名
+      
 　　   ` getRemotePort`方法返回客户机所使用的网络端口号
+     
 　　    `getLocalAddr`方法返回WEB服务器的IP地址。
+      
 　　   ` getLocalName`方法返回WEB服务器的主机名
+     
 　　    `getMethod`得到客户机请求方式
+      
 　　    
- b) 获得客户机请求头
+ 	b) 获得客户机请求头
  
 　　  `  getHeader(string name)`方法
 　　   ` getHeaders(String name)`方法
 　　    `getHeaderNames`方法
 　　    
-c) 获得客户机请求参数(客户端提交的数据)
+	c) 获得客户机请求参数(客户端提交的数据)
 
 　　    `getParameter(name)`方法
+      
 　　    `getParameterValues（String name）`方法
+      
 　　    `getParameterNames`方法
+      
 　　   ` getParameterMap`方法
+     
 4. <font color = "blue">它这样使用实现的原理（为什么可以这么用）
 
 	在`service`方法调用前由服务器创建，传入`service`方法。整个请求结束，`request`生命结束。
